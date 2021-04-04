@@ -1,0 +1,81 @@
+@import "./src/styles.scss";
+
+.Loader {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 150000;
+
+  &_spinner {
+    margin: 0 auto;
+    width: 90px;
+    height: 80px;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  &_spinner > div {
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    margin: 0 1px;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+
+  &_spinner &_rect2 {
+    background-color: $primary;
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+
+  &_spinner &_rect3 {
+    background-color: $primary;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+
+  &_spinner &_rect4 {
+    background-color: $secondary;
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+
+  &_spinner &_rect5 {
+    background-color: $secondary;
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+
+  @-webkit-keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+      -webkit-transform: scaleY(0.4);
+    }
+    20% {
+      -webkit-transform: scaleY(1);
+    }
+  }
+
+  @keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1);
+      -webkit-transform: scaleY(1);
+    }
+  }
+}

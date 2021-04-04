@@ -1,0 +1,25 @@
+<app-navbar [color]="color" [colorText]="colorText" [headerText]="headerText"></app-navbar>
+
+<!--Start Enterprise -->
+<section *ngIf="clients">
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxFlexOffset="300px" class="ClientCards">
+    <div fxFlex='30%' class="ClientCards_cards" *ngFor="let client of clients; let i = index">
+      <div *ngFor="let enterprise of client.enterprises; let i = index">
+        <!-- Start Cards -->
+        <mat-card class="" fxFlexFill fxFlex='100%'>
+          <mat-card-title    class="ClientCards_enterprise">Empreend: {{enterprise.name}}</mat-card-title>
+          <mat-card-subtitle class="ClientCards_enterprise">id: {{enterprise._id}}</mat-card-subtitle>
+          <span fxFlexFill>
+            <img [src]="enterprise.image_src" *ngIf="enterprise.image_src">
+          </span>
+          <mat-card-footer>
+            <div class="ClientCards_footer">Unidades: {{enterprise.realties}}</div>
+            <div class="ClientCards_footer">Construtora: {{client.name}}</div>
+          </mat-card-footer>
+        </mat-card>
+        <!-- End Cards -->
+      </div>
+    </div>
+  </div>
+</section>
+<!--End Enterprise-->

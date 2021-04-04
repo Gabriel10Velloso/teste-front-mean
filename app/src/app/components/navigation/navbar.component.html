@@ -1,0 +1,59 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <img src="assets/logo.png" alt="" id="logo" />
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/client']">
+        <mat-icon>people</mat-icon> 
+        Clientes
+      </a>
+      <a mat-list-item [routerLink]="['/enterprise']">
+        <mat-icon>apartment</mat-icon>
+        Empreendimentos
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar [ngStyle]="{'background': color, 'color': colorText}"  
+                  fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>{{headerText}}</span>
+      </div>
+      <div>
+        <mat-form-field class="form-field" 
+                        [floatLabel]="'never'">
+          <mat-icon matSuffix >search</mat-icon>
+          <input  matInput 
+                  type="text" 
+                  placeholder="Buscar empresas"
+                  [formControl]="search"
+                  [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let cliente of clientes" [value]="cliente.name">
+                      {{cliente.name}}
+          </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <a href="https://github.com/predialize/clients-dashboard" target="_blank">
+        <img src="assets/github.svg" alt="Teste Gabriel Velloso" id="github-logo">
+      </a>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

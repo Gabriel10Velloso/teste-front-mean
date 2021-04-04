@@ -1,0 +1,65 @@
+<app-loader *ngIf="loader"></app-loader>
+
+<app-navbar [color]="color" 
+            [colorText]="colorText" 
+            [headerText]="headerText"
+            (searchControlEvent)="getByNameId($event)">
+</app-navbar>
+
+<!--Start ListTotal Section (Angular Flex Layout)-->
+<section class="ClientTotal" *ngIf="listTotal">
+  <div gdAreas="area2 area3 area1" gdGap="1em">
+    <div gdArea="area2" class="ClientTotal_area2" fxLayoutAlign="center center">
+      Empreendimentos: 0{{listTotal.enterprises}}
+    </div>
+    <div gdArea="area3" class="ClientTotal_area3" fxLayoutAlign="center center">
+      Unidades: {{listTotal.properties}}
+    </div>
+    <div gdArea="area1" class="ClientTotal_area1" fxLayoutAlign="center center">
+      <!-- Construtoras: {{listTotal.clientTotal}} -->
+    </div>
+  </div>
+</section>
+<!--End ListTotal Section (Angular Flex Layout)-->
+
+<!--Start ListCards-->
+<section>
+  <div fxLayout="row wrap" fxFlexOffset="30" class="ClientCardsID" *ngIf="clients">
+    <div fxFlex='100%' class="ClientCardsID_cards" *ngFor="let client of clients; let i = index"  
+                    (click)="getClientIdEmterprise(client._id)">
+      <!-- Start Cards -->
+      <mat-card class="" fxFlexFill>
+        <mat-card-title>{{client.name}}</mat-card-title>
+        <mat-card-subtitle>Cliente: {{client._id}}</mat-card-subtitle>
+        <span fxFlexFill>
+            <img [src]="client.image_src">
+        </span>
+      </mat-card>
+      <!-- End Cards -->
+    </div>
+  </div>
+</section>
+<!--End ListCards-->
+
+
+<!-- Start Modal Dialog Show Client -->
+<div class="DialogClient">
+  <ng-template #clientDialog>
+    <mat-dialog-content *ngIf="clientModal">
+      <div class="" fxLayoutAlign="center center">
+        <span class="" matDialogTitle>{{clientModal.name}}</span>
+      </div>
+      <div class="" fxLayoutAlign="center center">
+        <span class="" matDialogTitle>Cliente: {{clientModal._id}}</span>
+      </div>
+    </mat-dialog-content>
+    <div fxLayoutAlign="center center">
+      <img class="DialogClient_img" [src]="clientModal.image_src">
+    </div>
+
+    <div class="DialogClient_btn" fxLayoutAlign="center center">
+      <button mat-raised-button class="DialogClient_btn_style" matDialogClose> Fechar </button>
+    </div>
+  </ng-template>
+</div>
+<!-- End Modal Dialog Show Client --> 

@@ -1,0 +1,46 @@
+<app-loader *ngIf="loader"></app-loader>
+
+<app-navbar [clientes]="clients" [color]="color" [colorText]="colorText" [headerText]="headerText"
+  (searchControlEvent)="getByName($event)">
+</app-navbar>
+
+<!--Start ListTotal Section (Angular Flex Layout)-->
+<section class="ClientTotal" *ngIf="listTotal">
+  <div gdAreas="area1 area2 area3" gdGap="1em">
+    <div gdArea="area1" class="ClientTotal_area1" fxLayoutAlign="center center">
+      Construtoras: {{listTotal.clientTotal}}
+    </div>
+    <div gdArea="area2" class="ClientTotal_area2" fxLayoutAlign="center center">
+      Empreendimentos: {{listTotal.enterprises}}
+    </div>
+    <div gdArea="area3" class="ClientTotal_area3" fxLayoutAlign="center center">
+      Unidades: {{listTotal.properties}}
+    </div>
+  </div>
+</section>
+<!--End ListTotal Section (Angular Flex Layout)-->
+
+<!--Start ListCards Section (Angular Flex Layout)-->
+<section>
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxFlexOffset="300px" class="ClientCards">
+    <div fxFlex='30%' class="ClientCards_cards" *ngFor="let client of clients; let i = index"
+      [routerLink]="['/client', client._id]">
+      <!-- Start Cards -->
+      <mat-card class="" fxFlexFill fxFlex='100%'>
+        <mat-card-title>{{client.name}}</mat-card-title>
+        <mat-card-subtitle>Cliente: {{client._id}}</mat-card-subtitle>
+        <span fxFlexFill>
+          <img [src]="client.image_src">
+        </span>
+        <!-- Total add, enterprises -->
+        {{calculateProjects(client)}}
+        <mat-card-footer>
+          <div class="ClientCards_footer">Empreendimentos: 0{{calculateEnterprises}}</div>
+          <div class="ClientCards_footer">Total Unidades: {{calculateProperties}}</div><br>
+        </mat-card-footer>
+      </mat-card>
+      <!-- End Cards -->
+    </div>
+  </div>
+</section>
+<!--End ListCards Section (Angular Flex Layout)-->

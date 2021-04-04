@@ -1,0 +1,36 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.form-field { 
+  margin-right: 50px;
+  font-size: 15px;
+}
+
+#logo {
+  width: 155px;
+}
+
+#github-logo {
+  width: 30px;
+  padding-top: 2px;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row  {
+  overflow: hidden;
+}
+
